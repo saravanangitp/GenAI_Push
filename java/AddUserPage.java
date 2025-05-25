@@ -2,54 +2,28 @@ package com.salesforce.pages;
 
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-/**
- * Page Object class for Add User page.
- */
 public class AddUserPage extends ProjectSpecificMethods {
 
+    // Method to enter first name
     /**
-     * Locator for the Add User header element.
+     * Enters the first name in the First Name field.
+     * @param firstName the first name to be entered
      */
-    private By addUserHeaderLocator = By.xpath("//h1[text()='Add User']");
-
-    /**
-     * Performs the user action on the Add User page.
-     * 
-     * @param userAction the action to be performed
-     */
-    public void performUserAction(String userAction) {
-        // Get the Add User header element
-        WebElement addUserHeader = getDriver().findElement(addUserHeaderLocator);
-        
-        // Perform the user action
-        // Add your action logic here based on the userAction parameter
-        reportStep("Performing user action: " + userAction + " on Add User page", "INFO");
+    public void enterFirstName(String firstName) {
+        // Using By.id locator strategy
+        getDriver().findElement(Locators.ID, "firstName").sendKeys(firstName);
+        reportStep("Entered first name: " + firstName + " on Add User page");
     }
 
+    // Method to get the first name
     /**
-     * Verifies if the Add User header is displayed.
-     * 
-     * @return true if the header is displayed, false otherwise
+     * Gets the first name from the First Name field.
+     * @return the first name
      */
-    public boolean isAddUserHeaderDisplayed() {
-        // Get the Add User header element
-        WebElement addUserHeader = getDriver().findElement(addUserHeaderLocator);
-        
-        // Check if the header is displayed
-        boolean isDisplayed = addUserHeader.isDisplayed();
-        reportStep("Verified if Add User header is displayed on Add User page", "INFO");
-        return isDisplayed;
-    }
-
-    /**
-     * Navigates to the Add User page.
-     */
-    public void navigateToAddUserPage() {
-        // Navigate to the Add User page
-        getDriver().get("https://thinking-tester-contact-list.herokuapp.com/addUser");
-        reportStep("Navigated to Add User page", "INFO");
+    public String getFirstName() {
+        // Using By.id locator strategy
+        return getDriver().findElement(Locators.ID, "firstName").getAttribute("value");
+        // reportStep("Got first name: " + getDriver().findElement(Locators.ID, "firstName").getAttribute("value") + " on Add User page");
     }
 }
