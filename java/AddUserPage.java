@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 public class AddUserPage extends ProjectSpecificMethods {
 
     /**
-     * Locator for the Add User header.
+     * Locator for the Add User header element.
      */
     private By addUserHeaderLocator = By.xpath("//h1[text()='Add User']");
 
@@ -21,37 +21,33 @@ public class AddUserPage extends ProjectSpecificMethods {
      * @param userAction the action to be performed
      */
     public void performUserAction(String userAction) {
+        // Get the Add User header element
+        WebElement addUserHeader = getDriver().findElement(addUserHeaderLocator);
+        
         // Perform the user action
+        // Add your action logic here based on the userAction parameter
         reportStep("Performing user action: " + userAction + " on Add User page", "INFO");
-        // Add the actual action based on the userAction parameter
-    }
-
-    /**
-     * Gets the Add User header element.
-     * 
-     * @return the Add User header element
-     */
-    public WebElement getAddUserHeader() {
-        // Get the Add User header element using the locator
-        return getDriver().findElement(addUserHeaderLocator);
     }
 
     /**
      * Verifies if the Add User header is displayed.
      * 
-     * @return true if the Add User header is displayed, false otherwise
+     * @return true if the header is displayed, false otherwise
      */
     public boolean isAddUserHeaderDisplayed() {
         // Get the Add User header element
-        WebElement header = getAddUserHeader();
+        WebElement addUserHeader = getDriver().findElement(addUserHeaderLocator);
+        
         // Check if the header is displayed
-        return header.isDisplayed();
+        boolean isDisplayed = addUserHeader.isDisplayed();
+        reportStep("Verified if Add User header is displayed on Add User page", "INFO");
+        return isDisplayed;
     }
 
     /**
      * Navigates to the Add User page.
      */
-    public void navigateToPage() {
+    public void navigateToAddUserPage() {
         // Navigate to the Add User page
         getDriver().get("https://thinking-tester-contact-list.herokuapp.com/addUser");
         reportStep("Navigated to Add User page", "INFO");
