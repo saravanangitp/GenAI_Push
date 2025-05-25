@@ -1,63 +1,41 @@
-// AddUserPage.ts
+// InputPage.ts
 
 import { Page, Locator } from '@playwright/test';
 
 /**
- * Page Object for Add User Page
+ * Page Object for Input Page
  */
-export class AddUserPage {
-
+export class InputPage {
   private page: Page;
-  private lastNameInput: Locator;
+  private firstNameInput: Locator;
 
   /**
-   * Initialize the page object with the provided Playwright Page instance
+   * Initialize the page object with the Playwright Page instance
    * @param page 
    */
-  // private constructor(page: Page) {
-  //   this.page = page;
-  //   this.lastNameInput = page.getByPlaceholder('Last Name');
-  // }
+  // page: Page is passed from the test file, no need for a constructor
 
   /**
-   * Enter the last name
-   * @param userAction 
+   * Method to fill the First Name input field
+   * @param firstName 
    */
-  public enterLastName(userAction: string): void {
-    // Get the last name input field using the getByPlaceholder locator strategy
-    this.lastNameInput = this.page.getByPlaceholder('Last Name');
-    // Perform the user action on the last name input field
-    this.lastNameInput.fill(userAction);
+  public fillFirstNameInput(firstName: string): void {
+    // Use getByPlaceholder to locate the input field
+    this.firstNameInput = this.page.getByPlaceholder('First Name');
+    // Fill the input field
+    this.firstNameInput.fill(firstName);
     // Log the action
-    this.reportStep(`Performed entering last name on Add User Page`, "pass");
+    this.reportStep(`Filled the First Name input field with ${firstName} on Input Page`, "pass");
   }
 
   /**
-   * Navigate to the add user page
+   * Method to get the value of the First Name input field
+   * @returns 
    */
-  public navigateToAddUserPage(): void {
-    // Navigate to the add user page
-    this.page.goto('https://thinking-tester-contact-list.herokuapp.com/addUser');
-    // Log the action
-    this.reportStep(`Navigated to Add User Page`, "pass");
-  }
-
-  /**
-   * Report a step
-   * @param step 
-   * @param status 
-   */
-  private reportStep(step: string, status: string): void {
-    console.log(`Report Step: ${step} - ${status}`);
-  }
-
-  /**
-   * Initialize the page object
-   * @param page 
-   */
-  public static initialize(page: Page): AddUserPage {
-    const addUserPage = new AddUserPage();
-    addUserPage.page = page;
-    return addUserPage;
+  public getFirstNameInputValue(): string {
+    // Use getByPlaceholder to locate the input field
+    this.firstNameInput = this.page.getByPlaceholder('First Name');
+    // Get the input field value
+    return this.firstNameInput.inputValue();
   }
 }
