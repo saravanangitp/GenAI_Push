@@ -1,11 +1,12 @@
 Feature: Describe paragraph content
 
-  Scenario Outline: A scenario describing paragraph verification
+  Scenario Outline: A scenario describing paragraph text verification
     Given I open the webpage
-    When I see the paragraph with class "genai-highlight genai-selected"
-    And I verify the paragraph text is "<paragraphText>"
-    Then I should see the paragraph with the specified class and text
+    When I find a paragraph with class "genai-highlight"
+    And I verify the paragraph also has class "genai-selected"
+    And I check the paragraph text is "<paragraphText>"
+    Then I should see the paragraph text as expected
 
   Examples:
-    | paragraphText                                   |
-    | "Created by Kristin Jackvony, Copyright 2021"    |
+    | paragraphText                                    |
+    | "Created by Kristin Jackvony, Copyright 2021"     |
