@@ -23,24 +23,31 @@ public class ContactListPage extends ProjectSpecificMethods {
     public String getSignUpParagraphText() {
         // Get the sign up paragraph element
         WebElement signUpParagraphElement = driver.findElement(signUpParagraphLocator);
+        
         // Get the text of the sign up paragraph element
         String signUpParagraphText = signUpParagraphElement.getText();
+        
         // Report the step
-        reportStep("Sign up paragraph text retrieved from Contact List page", "INFO");
+        reportStep("Sign up paragraph text: " + signUpParagraphText, "ContactListPage");
+        
         return signUpParagraphText;
     }
 
     /**
-     * Method to perform user action on the sign up paragraph element.
+     * Method to verify if the sign up paragraph is displayed.
      * 
-     * @param userAction the user action to perform
+     * @return true if the sign up paragraph is displayed, false otherwise
      */
-    public void performUserActionOnSignUpParagraph(String userAction) {
+    public boolean isSignUpParagraphDisplayed() {
         // Get the sign up paragraph element
         WebElement signUpParagraphElement = driver.findElement(signUpParagraphLocator);
-        // Perform the user action on the sign up paragraph element
-        // For example, if userAction is "click", then signUpParagraphElement.click();
+        
+        // Check if the sign up paragraph element is displayed
+        boolean isDisplayed = signUpParagraphElement.isDisplayed();
+        
         // Report the step
-        reportStep("User action '" + userAction + "' performed on sign up paragraph element on Contact List page", "INFO");
+        reportStep("Sign up paragraph is displayed: " + isDisplayed, "ContactListPage");
+        
+        return isDisplayed;
     }
 }
